@@ -22,3 +22,4 @@ Route::post('tablets/mode', [\App\Http\Controllers\Api\TabletController::class, 
 
 //ad video
 Route::get('video/get-list', [\App\Http\Controllers\Api\AdVideoController::class, 'getList']);
+
