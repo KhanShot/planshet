@@ -21,6 +21,8 @@ Auth::routes();
 Route::middleware('auth')->group(function (){
    Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
+
+
     Route::get('advertisers', [\App\Http\Controllers\Admin\AdvertiserController::class, 'index'])->name('advertisers');
     Route::get('advertisers/create', [\App\Http\Controllers\Admin\AdvertiserController::class, 'create'])->name('advertisers.create');
     Route::post('advertisers/store', [\App\Http\Controllers\Admin\AdvertiserController::class, 'store'])->name('advertisers.store');

@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="d-flex justify-content-between align-items-center mr-5">
-        <h2 class="mt-4">Планшеты (10/20)</h2>
+        <h2 class="mt-4">Планшеты ({{$tablets->where('status', 'on')->count()}}/{{$tablets->count()}})</h2>
     </div>
     @include('layouts.alert')
     <div>
@@ -10,26 +10,28 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Мак адрес</th>
                 <th scope="col">Состояние</th>
                 <th scope="col">Общий заработок</th>
                 <th scope="col">Кол-во показов</th>
                 <th scope="col">Время работы сегодня</th>
                 <th scope="col">Общее время работы</th>
-
+                <th></th>
             </tr>
             </thead>
             <tbody>
-            @foreach($tablets as $video)
+            @foreach($tablets as $tablet)
                 <tr>
-                    <th scope="row">{{$video->order}}</th>
-                    <td>{{$video->advertiser->company_name ?? '-'}}</td>
-                    <td>{{$video->campaign->budget ?? 0}}</td>
-                    <td>{{$video->campaign ? $video->campaign->start_date . '----' . $video->campaign->end_date : '-'}}</td>
-                    <td>{{round($video->duration) ?? 0 }}</td>
-                    <td>{{$video->is_placeholder ? 'Заставка' : "Клиент" }}</td>
+                    <th scope="row">{{$tablet->order}}</th>
+                    <td>{{ $tablet->mac_address }}</td>
+                    <td> @if($tablet->status == 'on') <i class="fa fa-circle text-success"></i> @else <i class="fa fa-circle text-secondary"></i> @endif </td>
+                    <td>{{$tablet->views->budget ?? 0}}</td>
+                    <td>{{$tablet->views->count ?? 0 }}</td>
+                    <td>{{round($tablet->duration) ?? 0 }}</td>
+                    <td>{{$tablet->duration_all ?? 0 }}</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <form method="post" action="{{route('advertisers.delete', $video->id)}}"
+                            <form method="post" action="{{route('advertisers.delete', $tablet->id)}}"
                                   onsubmit="return confirm('Вы действительно хотите удалить рекломадателя?')">
                                 @method('delete') @csrf
                                 <button type="submit" class="btn btn-outline-dark border-0 "><i class="fa fa-trash"></i></button>
