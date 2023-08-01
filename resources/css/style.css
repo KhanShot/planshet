@@ -40,6 +40,13 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+.active{
+    background: rgba(246, 245, 245, 0.8);
+    margin-left: -40px;
+    padding-left: 40px;
+    margin-right: -25px;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;

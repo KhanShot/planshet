@@ -28,7 +28,9 @@
 </head>
 <body>
 <div class="wrapper d-flex align-items-stretch">
-    @include('includes.sidebar')
+    @if( \Illuminate\Support\Facades\Route::currentRouteName() != 'login' )
+        @include('includes.sidebar')
+    @endif
 
     <!-- Page Content  -->
     <div class="container-fluid pl-4 mt-5 pt-4 ">
@@ -44,13 +46,13 @@
 
 <script>
     // Get a reference to the file input element
-    const inputElement = document.querySelector('input[type="file"]');
-    FilePond.registerPlugin(FilePondPluginFileValidateType);
-
-    // Create a FilePond instance
-    const pond = FilePond.create(inputElement, {
-        acceptedFileTypes: ['video/*'],
-    });
+    // const inputElement = document.querySelector('input[type="file"]');
+    // FilePond.registerPlugin(FilePondPluginFileValidateType);
+    //
+    // // Create a FilePond instance
+    // const pond = FilePond.create(inputElement, {
+    //     acceptedFileTypes: ['video/*'],
+    // });
 </script>
 
 @yield('js')

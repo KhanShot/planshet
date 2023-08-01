@@ -33,6 +33,12 @@ Route::middleware('auth')->group(function (){
     Route::post('campaigns/store', [\App\Http\Controllers\Admin\CampaignController::class, 'store'])->name('campaigns.store');
     Route::delete('campaigns/delete', [\App\Http\Controllers\Admin\CampaignController::class, 'delete'])->name('campaigns.delete');
 
+    //placeholder video
+    Route::get('video/create', [\App\Http\Controllers\Admin\AdVideoController::class, 'create'])->name('video.create');
+    Route::post('video/store', [\App\Http\Controllers\Admin\AdVideoController::class, 'store'])->name('video.store');
+
+    //tablets
+    Route::get('tablets',[\App\Http\Controllers\Admin\TabletController::class, 'index'])->name('tablets');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
