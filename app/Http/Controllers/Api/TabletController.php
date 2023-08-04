@@ -19,10 +19,28 @@ class TabletController extends Controller
 
 
         //TODO working time avg, all
-//        TabletWorkingTime::query()->create([
-//            'tablet_id' =>    $tablet->id,
-//            'start_date' => now(),
-//        ]);
+        if ($request->get('status') == 'on'){
+            $twt = TabletWorkingTime::query()
+                ->where('tablet_id', $tablet->id)
+                ->whereNull('end_date')
+                ->orderBy('start_date', 'DESC')->first();
+            if ($twt)
+                return $this->failedResponse('tablet is already on (планшет еще не был выключен!)', 400);
+            TabletWorkingTime::query()->create([
+                'tablet_id' =>    $tablet->id,
+                'start_date' => $request->get('time'),
+                'end_date' => null,
+            ]);
+        }else{
+            $twt = TabletWorkingTime::query()
+                ->where('tablet_id', $tablet->id)
+                ->whereNull('end_date')
+                ->orderBy('start_date', 'DESC')->first();
+            if (!$twt)
+                return 'no such sucks';
+            $twt->end_date = $request->get('time');
+            $twt->save();
+        }
 
         // TODO add views, all price
 

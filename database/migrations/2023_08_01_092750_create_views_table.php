@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("tablet_id")->nullable();
+            $table->foreign('tablet_id')->references('id')
+                ->on('tablets')->cascadeOnDelete();
+
+            $table->unsignedBigInteger("video_id")->nullable();
+            $table->foreign('video_id')->references('id')
+                ->on('ad_videos')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
