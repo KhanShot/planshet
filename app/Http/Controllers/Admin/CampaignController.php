@@ -16,7 +16,7 @@ class CampaignController extends Controller
     public function index(){
 //        $campaigns = Campaign::query()->with(['advertiser', 'video'])->get();
 
-        $ad_videos = AdVideo::query()->with(['advertiser', 'campaign'])->get();
+        $ad_videos = AdVideo::query()->with(['advertiser', 'campaign'])->orderBy('order', "ASC")->get();
         return view('campaigns.index', compact('ad_videos'));
     }
 
