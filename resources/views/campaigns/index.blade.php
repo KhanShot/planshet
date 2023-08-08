@@ -35,7 +35,7 @@
             <tbody>
             @foreach($ad_videos as $video)
                 <tr>
-                    <th scope="row">{{$video->order}}</th>
+                    <th scope="row">{{$video->order }}</th>
                     <td>{{$video->advertiser->company_name ?? '-'}}</td>
                     <td>{{$video->campaign->budget ?? 0}}</td>
                     <td>{{$video->campaign ? $video->campaign->start_date . '----' . $video->campaign->end_date : '-'}}</td>
@@ -48,12 +48,37 @@
                                 @method('delete') @csrf
                                 <button type="submit" class="btn btn-outline-dark border-0 "><i class="fa fa-trash"></i></button>
                             </form>
-                            <a href="#" class="btn btn-outline-dark border-0"><i class="fa fa-chart-simple"></i></a>
-                            <a href="#" class="btn btn-outline-dark border-0 "> <svg class="icon-hover" width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M21.2187 10.6094C21.2187 16.4657 16.4551 21.2187 10.6094 21.2187L10.3126 21.2147C4.59325 21.0573 -7.15402e-07 16.3665 -4.63751e-07 10.6094C-2.08224e-07 4.76361 4.753 -7.19741e-07 10.6094 -4.63751e-07C16.4551 -2.08224e-07 21.2187 4.76361 21.2187 10.6094ZM13.5694 10.6094C13.5694 10.3972 13.4845 10.1956 13.336 10.0471L9.63331 6.36562C9.48478 6.20648 9.2832 6.13222 9.08162 6.13222C8.86944 6.13222 8.66786 6.20648 8.50872 6.36562C8.20105 6.68391 8.20105 7.18255 8.51933 7.49022L11.6491 10.6094L8.51933 13.7285C8.20105 14.0362 8.20105 14.5455 8.50872 14.8531C8.827 15.1714 9.32564 15.1714 9.63331 14.8531L13.336 11.1717C13.4845 11.0231 13.5694 10.8216 13.5694 10.6094Z"
-                                          />
-                                </svg>
-                            </a>
+                            <button class="btn btn-outline-dark border-0" data-toggle="modal" data-target="#editModal{{$video->id}}"><i class="fa fa-pen-to-square"></i></button>
+
+                            <!-- edit modal -->
+                            <div class="modal fade " id="editModal{{$video->id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{$video->id}}" aria-hidden="true">
+                                <div class="modal-dialog" role="document" >
+                                    <div class="modal-content" style="background: #EDEDED">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editModalLabel{{$video->id}}">Редактировать видео</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('video.update', $video->id) }}" method="post">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label>Очередь</label>
+                                                    <input type="number" required value="{{$video->order}}" class="form-control border-radius-20" name="order">
+                                                </div>
+                                                <div class="form-group d-flex justify-content-end">
+                                                    <button class="btn btn-dark border-0 border-radius-20">Сохранить</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <a href="{{ route('video.detail', $video->id) }}" class="btn btn-outline-dark border-0"><i class="fa fa-chart-simple"></i></a>
+
                         </div>
                     </td>
                 </tr>

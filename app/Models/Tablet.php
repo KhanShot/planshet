@@ -12,4 +12,12 @@ class Tablet extends Model
         'mac_address', 'ip_address',
         'last_online', 'status',
     ];
+
+    public function working_time(){
+        return $this->hasMany(TabletWorkingTime::class, 'tablet_id');
+    }
+
+    public function views(){
+        return $this->hasMany(View::class, 'tablet_id');
+    }
 }

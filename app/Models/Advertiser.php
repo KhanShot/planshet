@@ -15,4 +15,7 @@ class Advertiser extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function video(){
+        return $this->hasMany(AdVideo::class, 'advertiser_id');
+    }
 }

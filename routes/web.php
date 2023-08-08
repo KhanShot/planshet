@@ -25,7 +25,10 @@ Route::middleware('auth')->group(function (){
 
     Route::get('advertisers', [\App\Http\Controllers\Admin\AdvertiserController::class, 'index'])->name('advertisers');
     Route::get('advertisers/create', [\App\Http\Controllers\Admin\AdvertiserController::class, 'create'])->name('advertisers.create');
+    Route::get('advertisers/edit/{adv_id}', [\App\Http\Controllers\Admin\AdvertiserController::class, 'edit'])->name('advertisers.edit');
+    Route::get('advertisers/detail/{adv_id}', [\App\Http\Controllers\Admin\AdvertiserController::class, 'detail'])->name('advertisers.detail');
     Route::post('advertisers/store', [\App\Http\Controllers\Admin\AdvertiserController::class, 'store'])->name('advertisers.store');
+    Route::post('advertisers/update/{adv_id}', [\App\Http\Controllers\Admin\AdvertiserController::class, 'update'])->name('advertisers.update');
     Route::delete('advertisers/delete/{adv_id}', [\App\Http\Controllers\Admin\AdvertiserController::class, 'delete'])->name('advertisers.delete');
 
 
@@ -37,10 +40,14 @@ Route::middleware('auth')->group(function (){
 
     //placeholder video
     Route::get('video/create', [\App\Http\Controllers\Admin\AdVideoController::class, 'create'])->name('video.create');
+    Route::get('video/detail/{video_id}', [\App\Http\Controllers\Admin\AdVideoController::class, 'detail'])->name('video.detail');
     Route::post('video/store', [\App\Http\Controllers\Admin\AdVideoController::class, 'store'])->name('video.store');
+    Route::post('video/update/{video_id}', [\App\Http\Controllers\Admin\AdVideoController::class, 'update'])->name('video.update');
 
     //tablets
     Route::get('tablets',[\App\Http\Controllers\Admin\TabletController::class, 'index'])->name('tablets');
+    Route::get('settings',[\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings');
+    Route::post('settings/create',[\App\Http\Controllers\Admin\SettingController::class, 'create'])->name('settings.create');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
