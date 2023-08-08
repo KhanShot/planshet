@@ -15,7 +15,10 @@ class DashboardController extends Controller
         $data['video_count'] = AdVideo::query()->count();
         $data['video_duration_all'] = AdVideo::query()->sum('duration');
         $price = Setting::query()->first();
-        $data['price_total'] = $data['video_duration_all'] * $price->price ?? 1;
+        $data['price_total'] = $data['video_duration_all'] * 1;
+        if ($price){
+            $data['price_total'] = $data['video_duration_all'] * $price->price;
+        }
         return view('pages.dashboard', compact('data'));
     }
 }
