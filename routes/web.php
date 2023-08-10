@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function (){
 
     //tablets
     Route::get('tablets',[\App\Http\Controllers\Admin\TabletController::class, 'index'])->name('tablets');
+    Route::post('tablets/update/{tablet_id}',[\App\Http\Controllers\Admin\TabletController::class, 'update'])->name('tablets.update');
+    Route::post('tablets/reset/{tablet_id}',[\App\Http\Controllers\Admin\TabletController::class, 'reset'])->name('tablets.reset');
+
     Route::get('settings',[\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings');
     Route::post('settings/create',[\App\Http\Controllers\Admin\SettingController::class, 'create'])->name('settings.create');
 });

@@ -10,7 +10,7 @@ class Tablet extends Model
     use HasFactory;
     protected $fillable = [
         'mac_address', 'ip_address',
-        'last_online', 'status',
+        'last_online', 'status', 'name',
     ];
 
     public function working_time(){
