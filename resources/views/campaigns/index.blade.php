@@ -43,7 +43,7 @@
                     <td>{{$video->is_placeholder ? 'Заставка' : "Клиент" }}</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <form method="post" action="{{route('advertisers.delete', $video->id)}}"
+                            <form method="post" action="{{route('campaigns.delete', $video->id)}}"
                                   onsubmit="return confirm('Вы действительно хотите удалить рекломадателя?')">
                                 @method('delete') @csrf
                                 <button type="submit" class="btn btn-outline-dark border-0 "><i class="fa fa-trash"></i></button>

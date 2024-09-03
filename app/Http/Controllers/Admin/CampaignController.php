@@ -9,6 +9,7 @@ use App\Models\Advertiser;
 use App\Models\AdVideo;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Owenoj\LaravelGetId3\GetId3;
 
 class CampaignController extends Controller
@@ -56,8 +57,17 @@ class CampaignController extends Controller
         return redirect()->route('campaigns')->with('success', Utils::$MESSAGE_SUCCESS_ADDED);
     }
 
-    public function delete($campaign_id){
+    public function delete($video){
+        $video = AdVideo::query()->findOrFail($video);
 
+        Storage::delete('public'. $video->url);
+
+        if ($video->campaign)
+            $video->campaign->delete();
+
+        $video->delete();
+
+        return redirect()->route('campaigns')->with('success', Utils::$MESSAGE_SUCCESS_DELETED);
     }
 
 }

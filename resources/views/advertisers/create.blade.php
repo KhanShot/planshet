@@ -15,16 +15,21 @@
             <form method="post" action="{{ route('advertisers.store') }}">
                 @csrf
                 <div class="form-group">
-                    <input name="name" required class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2" placeholder="Название компании">
+                    <input name="name" required value="{{old('name')}}" class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2" placeholder="Название компании">
                 </div>
                 <div class="form-group">
-                    <input name="description" required class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2" placeholder="Описание">
+                    <input name="description" value="{{old('description')}}" required class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2" placeholder="Описание">
                 </div>
                 <div class="form-group">
-                    <input name="phone" id="phone" required class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2" placeholder="+7 (___)___-__-__">
+                    <input name="phone" id="phone" value="{{old('phone')}}" required class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2" placeholder="+7 (___)___-__-__">
                 </div>
                 <div class="form-group">
-                    <input name="email" required type="email" class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2" placeholder="login/email">
+                    <input name="email" required type="email" value="{{old('email')}}" class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2  @error('email') is-invalid @enderror" placeholder="login/email">
+                    @error('email')
+                    <span class="text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <input name="password" required type="password" class="form-control border-radius-20  pl-4 pr-4 pt-2 pb-2" placeholder="Пароль">
