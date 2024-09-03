@@ -22,7 +22,7 @@
                     <button class="btn btn-outline-dark border-radius-20 border-0 background-white pl-5 pr-5">Фильтр</button>
                 </div>
                 <div class="form-group">
-                    <a href="/dashboard" class="btn btn-outline-dark border-radius-20 border-0 background-white pl-5 pr-5">сбросить фильтр</a>
+                    <a href="/dashboard" class="btn btn-outline-dark border-radius-20 border-0 background-white pl-5 pr-5">Cбросить фильтр</a>
                 </div>
             </div>
         </form>

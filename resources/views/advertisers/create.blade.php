@@ -42,10 +42,6 @@
             </form>
 
         </div>
-
-        <div class="col-md-7 w-100 back-image" style="background: url('/assets/images/bg-image.jpg')">
-
-        </div>
     </div>
 
 
