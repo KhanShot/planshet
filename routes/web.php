@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function (){
     Route::get('campaigns', [\App\Http\Controllers\Admin\CampaignController::class, 'index'])->name('campaigns');
     Route::get('campaigns/create', [\App\Http\Controllers\Admin\CampaignController::class, 'create'])->name('campaigns.create');
     Route::post('campaigns/store', [\App\Http\Controllers\Admin\CampaignController::class, 'store'])->name('campaigns.store');
-    Route::delete('campaigns/delete', [\App\Http\Controllers\Admin\CampaignController::class, 'delete'])->name('campaigns.delete');
+    Route::delete('campaigns/delete/{id}', [\App\Http\Controllers\Admin\CampaignController::class, 'delete'])->name('campaigns.delete');
 
     //placeholder video
     Route::get('video/create', [\App\Http\Controllers\Admin\AdVideoController::class, 'create'])->name('video.create');
