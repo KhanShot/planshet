@@ -6,7 +6,7 @@
         <div>
             <a href="{{route('video.create')}}" class="btn btn-outline-dark border-0 background-white border-radius-20">
                 <i class="fa fa-plus-circle mt-1"></i>
-                добавить закладку
+                добавить заставку
             </a>
 
             <a href="{{route('campaigns.create')}}" class="btn btn-outline-dark border-radius-20 border-0 background-white">
